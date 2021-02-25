@@ -32,7 +32,7 @@ export default {
             try {
                 const val = await fb.auth().signInWithEmailAndPassword(this.email, this.password)
                 let admin = val.user.uid
-                if (admin == '5EhswSN6YFS7Tp0xqFqCk1AoxYi1') {
+                if (admin == 'VH948MptiHbDEGlaGabkrzHFiGE3') {
                     this.$router.push('/admin')
                 } else {
                     this.$router.push('/')

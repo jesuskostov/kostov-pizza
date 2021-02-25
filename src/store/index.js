@@ -31,7 +31,8 @@ export default new Vuex.Store({
       })
 
       return (total - (total * state.discount/100)).toFixed(2);
-    }
+    },
+
   },
   mutations: {
 
@@ -218,6 +219,7 @@ export default new Vuex.Store({
 
     getOrder: ({commit}, userID) => {
       Axios.get(`https://pizza-5f900.firebaseio.com/dashboard/user_${userID}.json`).then( res => {
+        console.log(userID);
         commit('TRACK_ORDER', res.data)
       })
     },

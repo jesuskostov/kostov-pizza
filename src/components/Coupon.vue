@@ -5,7 +5,7 @@
                 <img src="../assets/coupon.gif" alt="coupon">
             </div>
             <div>
-                <p>Здравей <b>{{name}}</b></p>
+                <p>Здравейте <b>{{name}}</b></p>
                 <p>Ти получи купон за <b>5%</b> отстъпка: <b style="color: #10ca93">{{coupon.coupon}}</b></p>
             </div>
         </div>
@@ -35,9 +35,9 @@ export default {
     },
     methods: {
         async getInfo() {
-            let res = await axios.get(`https://pizza-5f900.firebaseio.com/users/user_${this.userUid}/.json`)
+            let res = await axios.get(`https://pizza-5f900.firebaseio.com/users/user_${this.userUid}.json`)
             this.coupons = res.data.coupon
-            this.name = res.data.name
+            this.name = res.data.user_info.name
         }
     }
 }   

@@ -75,7 +75,7 @@ export default {
             this.loading = false
         },
         async info() {
-            let res = await axios.get(`https://pizza-5f900.firebaseio.com/users/user_${this.userUid}.json`)
+            let res = await axios.get(`https://pizza-5f900.firebaseio.com/users/user_${this.userUid}/user_info/.json`)
             let user = res.data
             this.name = user.name
             this.address = user.address

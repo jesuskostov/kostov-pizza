@@ -32,7 +32,9 @@
             <div class="container">
                 <div class="cart-actions mt-5">
                     <div v-if="cart.length != 0"  class="col-12">
-                        <p>Обща сума: <span class="colored">{{cartTotalPrice}} лв</span></p>
+                        <p>Сума: <span class="colored">{{setPrice}} лв</span></p>
+                        <p>Отстъпка: <span class="colored">{{discount}}%</span></p>
+                        <p>Обща сума за плащане: <span class="colored">{{cartTotalPrice}} лв</span></p>
                     </div>
                     <div class="col-11 col-md-8 mx-auto text-center mt-5">
                         <div v-if="cart.length != 0" class="d-flex mb-4">
@@ -122,6 +124,8 @@ export default {
             userUid: '',
             height: null,
             coupon: '',
+            setPrice: '',
+            discount: 0
         }
     },
     created() {
@@ -146,22 +150,12 @@ export default {
             setTimeout(() => {
                this.animate = false
             }, 2000)
-        }
+        },
     },
     mounted() {
         fb.auth().onAuthStateChanged( user => {
             if (user) {
-            // User is signed in.
-            this.userUid = user.uid;
-        //     let adminUid = user.uid
-        //     let uid = 'DmoyCUeyF9ec04COlKQdcCnYsd23'
-        //     if (adminUid == uid){
-        //     this.isAdmin = true
-        //     }
-        // } else {
-        //     // No user is signed in.
-        //     console.log('User not log-ged');
-        // }
+                this.userUid = user.uid;
             }
         })
         setTimeout(() => {
@@ -170,10 +164,11 @@ export default {
         }, 100)
     },
     methods: {
-        applyButton() {
+        async applyButton() {
             let coupon = this.coupon
             let userID = this.userUid
-            this.$store.dispatch('coupon', {coupon, userID})
+            await this.$store.dispatch('coupon', {coupon, userID})
+            this.discount = this.$store.state.discount
         },
         order() {
             let items = this.cart
@@ -187,6 +182,7 @@ export default {
             
         },
         showCart() {
+            this.setPrice = this.cartTotalPrice
             this.show = true
         },
         swipeLeft(item, id) {

@@ -43,7 +43,7 @@ export default {
                 .createUserWithEmailAndPassword(this.email, this.password);
                 let uid = user.user.uid
                 if (uid) {
-                    axios.put(`https://pizza-5f900.firebaseio.com/users/user_${uid}.json`, {name: this.name, address: this.address, phone: this.phone})
+                    await axios.put(`https://pizza-5f900.firebaseio.com/users/user_${uid}/user_info.json`, {name: this.name, address: this.address, phone: this.phone})
                     this.$router.push("/");
                 }
             } catch (err) {

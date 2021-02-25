@@ -45,23 +45,13 @@ export default {
         }
     },
     async mounted() {
-        await fb.auth().onAuthStateChanged( user => {
+        fb.auth().onAuthStateChanged( async user => {
             if (user) {
-            // User is signed in.
-            this.userUid = user.uid;
-        //     let adminUid = user.uid
-        //     let uid = 'DmoyCUeyF9ec04COlKQdcCnYsd23'
-        //     if (adminUid == uid){
-        //     this.isAdmin = true
-        //     }
-        // } else {
-        //     // No user is signed in.
-        //     console.log('User not log-ged');
-        // }
+                this.userUid = user.uid;
+                let userID = await this.userUid
+                this.$store.dispatch('getOrder', userID)
             }
         })
-        let userID = this.userUid
-        await this.$store.dispatch('getOrder', userID)
         
     },
 }
