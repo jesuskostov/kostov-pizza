@@ -7,7 +7,7 @@
       <div class="bg" :class="{'show': productID}"></div>
       <!-- PRODUCTS -->
       <div class="col-12 mx-auto col-3 col-md-4" v-for="(product, i) in products" :key="i">
-          <div v-if="!isLoading" class="box pizza-item d-flex flex-column flex-md-row py-0">
+          <div v-if="!isLoading" class="box pizza-item d-flex flex-column pl-2 pl-md-0 flex-md-row py-0">
             <div class="img d-flex align-items-center justify-content-center" @click="viewProduct(i)">
                 <img v-if="product.image" :src="product.image" alt="pizza">
             </div>
@@ -199,7 +199,7 @@ you set the css property it will be when transition ends
 }
 
 .pizza-item {
-  height: 125px;
+  min-height: 125px;
   text-align: left;
   box-shadow: 0 6px 8px rgba(0,0,0,0.11);
   margin-bottom: 20px;

@@ -46,7 +46,7 @@ export default {
 <style lang="scss" scoped>
 .coupon-container {
     position: fixed;
-    bottom: 0;
+    bottom: 70px;
     left: 30px;
     z-index: 9999999999;
 }
